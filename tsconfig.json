@@ -18,7 +18,36 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		"noFallthroughCasesInSwitch": true,
+
+		/* Aliases Intellisense */
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"src/*"
+			],
+			"@models/*": [
+				"src/models/*"
+			],
+			"@api": [
+				"src/api"
+			],
+			"@api/*": [
+				"src/api/*"
+			],
+			"@components/*": [
+				"src/components/*"
+			],
+			"@stores/*": [
+				"src/stores/*"
+			],
+			"@utils/*": [
+				"src/utils/*"
+			],
+			"@assets/*": [
+				"src/assets/*"
+			]
+		}
 	},
 	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"references": [{ "path": "./tsconfig.node.json" }]
