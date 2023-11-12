@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * SpaceTraders API
- * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+ * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: joel@spacetraders.io
@@ -19,57 +19,56 @@ import { exists, mapValues } from '../runtime';
  * @interface ShipFuelConsumed
  */
 export interface ShipFuelConsumed {
-    /**
-     * The amount of fuel consumed by the most recent transit or action.
-     * @type {number}
-     * @memberof ShipFuelConsumed
-     */
-    amount: number;
-    /**
-     * The time at which the fuel was consumed.
-     * @type {Date}
-     * @memberof ShipFuelConsumed
-     */
-    timestamp: Date;
+	/**
+	* The amount of fuel consumed by the most recent transit or action.
+	* @type {number}
+	* @memberof ShipFuelConsumed
+	*/
+	amount: number;
+	/**
+	* The time at which the fuel was consumed.
+	* @type {Date}
+	* @memberof ShipFuelConsumed
+	*/
+	timestamp: Date;
 }
 
 /**
  * Check if a given object implements the ShipFuelConsumed interface.
  */
 export function instanceOfShipFuelConsumed(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "amount" in value;
-    isInstance = isInstance && "timestamp" in value;
+	let isInstance = true;
+	isInstance = isInstance && "amount" in value;
+	isInstance = isInstance && "timestamp" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ShipFuelConsumedFromJSON(json: any): ShipFuelConsumed {
-    return ShipFuelConsumedFromJSONTyped(json, false);
+	return ShipFuelConsumedFromJSONTyped(json, false);
 }
 
 export function ShipFuelConsumedFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipFuelConsumed {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'amount': json['amount'],
-        'timestamp': (new Date(json['timestamp'])),
-    };
+	if ((json === undefined) || (json === null)) {
+		return json;
+	}
+	return {
+
+		'amount': json['amount'],
+		'timestamp': (new Date(json['timestamp'])),
+	};
 }
 
 export function ShipFuelConsumedToJSON(value?: ShipFuelConsumed | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'amount': value.amount,
-        'timestamp': (value.timestamp.toISOString()),
-    };
-}
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
 
+		'amount': value.amount,
+		'timestamp': (value.timestamp.toISOString()),
+	};
+}

@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * SpaceTraders API
- * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.   
+ * SpaceTraders is an open-universe game and learning platform that offers a set of HTTP endpoints to control a fleet of ships and explore a multiplayer universe.  The API is documented using [OpenAPI](https://github.com/SpaceTradersAPI/api-docs). You can send your first request right here in your browser to check the status of the game server.  ```json http {   \"method\": \"GET\",   \"url\": \"https://api.spacetraders.io/v2\", } ```  Unlike a traditional game, SpaceTraders does not have a first-party client or app to play the game. Instead, you can use the API to build your own client, write a script to automate your ships, or try an app built by the community.  We have a [Discord channel](https://discord.com/invite/jh6zurdWk5) where you can share your projects, ask questions, and get help from other players.
  *
  * The version of the OpenAPI document: 2.0.0
  * Contact: joel@spacetraders.io
@@ -15,59 +15,58 @@
 import { exists, mapValues } from '../runtime';
 import type { ExtractResources201ResponseData } from './ExtractResources201ResponseData';
 import {
-    ExtractResources201ResponseDataFromJSON,
-    ExtractResources201ResponseDataFromJSONTyped,
-    ExtractResources201ResponseDataToJSON,
+	ExtractResources201ResponseDataFromJSON,
+	ExtractResources201ResponseDataFromJSONTyped,
+	ExtractResources201ResponseDataToJSON,
 } from './ExtractResources201ResponseData';
 
 /**
- * 
+ *
  * @export
  * @interface ExtractResources201Response
  */
 export interface ExtractResources201Response {
-    /**
-     * 
-     * @type {ExtractResources201ResponseData}
-     * @memberof ExtractResources201Response
-     */
-    data: ExtractResources201ResponseData;
+	/**
+	*
+	* @type {ExtractResources201ResponseData}
+	* @memberof ExtractResources201Response
+	*/
+	data: ExtractResources201ResponseData;
 }
 
 /**
  * Check if a given object implements the ExtractResources201Response interface.
  */
 export function instanceOfExtractResources201Response(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "data" in value;
+	let isInstance = true;
+	isInstance = isInstance && "data" in value;
 
-    return isInstance;
+	return isInstance;
 }
 
 export function ExtractResources201ResponseFromJSON(json: any): ExtractResources201Response {
-    return ExtractResources201ResponseFromJSONTyped(json, false);
+	return ExtractResources201ResponseFromJSONTyped(json, false);
 }
 
 export function ExtractResources201ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExtractResources201Response {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'data': ExtractResources201ResponseDataFromJSON(json['data']),
-    };
+	if ((json === undefined) || (json === null)) {
+		return json;
+	}
+	return {
+
+		'data': ExtractResources201ResponseDataFromJSON(json['data']),
+	};
 }
 
 export function ExtractResources201ResponseToJSON(value?: ExtractResources201Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'data': ExtractResources201ResponseDataToJSON(value.data),
-    };
-}
+	if (value === undefined) {
+		return undefined;
+	}
+	if (value === null) {
+		return null;
+	}
+	return {
 
+		'data': ExtractResources201ResponseDataToJSON(value.data),
+	};
+}
