@@ -12,5 +12,4 @@ charset = utf-8
 indent_style = tab
 
 [*.{md,yml}]
-trim_trailing_whitespace = false
 indent_style = space
