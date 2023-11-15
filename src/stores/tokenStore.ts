@@ -22,7 +22,7 @@ export const useTokenStore = defineStore('token', {
 			this.$subscribe(() => cacheSettings(this.token));
 		},
 		registerNewToken(faction: FactionSymbols, symbol: string) {
-			api.register({
+			return api.register({
 				registerRequest: {
 					faction: faction,
 					symbol: symbol

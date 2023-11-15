@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import { useTokenStore } from './stores/tokenStore';
+import { useTokenStore } from '@stores/tokenStore';
+import NewGame from '@components/NewGame.vue';
 const tokenStore = useTokenStore();
 tokenStore.enableTokenCache();
 </script>
 
 <template>
-	<p @click="tokenStore.registerNewToken('COSMIC', 'trailblazer')">Update Registration</p>
-	<p>{{ tokenStore.token }}</p>
+	<NewGame class="new-game" v-if="!tokenStore.token" />
+	<div v-else>
+		<p>{{ tokenStore.token.slice(0, 20) }}</p>
+		<button @click="tokenStore.token = ''">Clear</button>
+	</div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+.new-game {
+	width: 320px;
+	background: var(--background-accent);
+	border-radius: 12px;
+
+}
 </style>

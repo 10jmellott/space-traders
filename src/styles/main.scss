@@ -1,0 +1,23 @@
+@import 'reset.css';
+@import 'theme.css';
+
+html, body {
+	font-family: 'Courier New', Courier, monospace;
+	background-color: var(--background);
+	color: var(--foreground);
+
+	input, select, button {
+		font-family: 'Courier New', Courier, monospace;
+	}
+}
+
+#app {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+}
