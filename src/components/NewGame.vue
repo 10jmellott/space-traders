@@ -64,7 +64,6 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 	flex-direction: column;
 	gap: 24px;
 	text-align: center;
-	padding: 32px;
 
 	&__separator {
 		display: flex;

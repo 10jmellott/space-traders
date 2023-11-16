@@ -1,4 +1,4 @@
-import { DefaultApi, FactionSymbols } from '@api';
+import { Configuration, DefaultApi, FactionSymbols } from '@api';
 import { defineStore } from 'pinia';
 
 const localStorageKey = 'space-traders-token';
@@ -9,11 +9,18 @@ function cacheSettings(token: string) {
 
 const api = new DefaultApi();
 
-export const useTokenStore = defineStore('token', {
+export const useTokenStore = defineStore('tokenStore', {
 	state: () => ({
 		tokenCacheEnabled: false,
 		token: localStorage?.getItem(localStorageKey) ?? ''
 	}),
+	getters: {
+		apiConfiguration(): Configuration {
+			return new Configuration({
+				accessToken: this.token
+			});
+		}
+	},
 	actions: {
 		enableTokenCache() {
 			if (this.tokenCacheEnabled) return;
