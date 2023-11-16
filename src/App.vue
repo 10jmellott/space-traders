@@ -30,7 +30,7 @@ tokenStore.$subscribe(agentStore.refreshAgent);
 
 <style lang="scss" scoped>
 .new-game {
-	width: 320px;
+	width: 360px;
 	background: var(--background-accent);
 	border-radius: 12px;
 	padding: 24px;

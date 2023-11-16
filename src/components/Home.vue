@@ -1,12 +1,18 @@
 <script setup lang="ts">
+import ButtonInput from '@components/forms/ButtonInput.vue';
+
 import { useAgentStore } from '@stores/agentStore';
+import { useTokenStore } from '@stores/tokenStore';
 
 const agentStore = useAgentStore();
+
+const tokenStore = useTokenStore();
 </script>
 
 <template>
 	<div class="home">
 		<p v-for="value of Object.values(agentStore.agent || {})" :key="value">{{ value }}</p>
+		<ButtonInput @click="tokenStore.token = ''">Clear Token</ButtonInput>
 	</div>
 </template>
 

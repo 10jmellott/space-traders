@@ -9,13 +9,26 @@ defineEmits(['update:model-value']);
 </script>
 
 <template>
-	<select @change="$emit('update:model-value', ($event.target as any)?.value)">
-		<option v-for="option in options" :value="option.value">{{ option.label }}</option>
-	</select>
+	<div class="select-input">
+		<select @change="$emit('update:model-value', ($event.target as any)?.value)">
+			<option v-for="option in options" :value="option.value">{{ option.label }}</option>
+		</select>
+		<font-awesome-icon class="select-input__chevron" icon="chevron-down" />
+	</div>
 </template>
 
 <style lang="scss" scoped>
+.select-input {
+	display: flex;
+	align-items: center;
+	position: relative;
 
+	&__chevron {
+		position: absolute;
+		right: 12px;
+		pointer-events: none;
+	}
+}
 select {
 	border: 1px solid var(--foreground);
 	border-radius: 8px;
@@ -23,6 +36,6 @@ select {
 	font-size: 1.125rem;
 	text-align: center;
 	color: var(--foreground);
+	width: 100%;
 }
-
 </style>

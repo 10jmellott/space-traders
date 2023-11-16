@@ -14,8 +14,7 @@ const faction = ref(FactionSymbols.Cosmic);
 
 const importToken = ref('');
 
-const generalErrors = ref('');
-const symbolErrors = ref([]);
+const errors = ref([] as string[]);
 
 function submit() {
 	if (importToken.value) {
@@ -26,9 +25,9 @@ function submit() {
 				const response = await e.response.json();
 				if (response?.error) {
 					if (response.error.data?.symbol) {
-						symbolErrors.value = response.error.data.symbol;
+						errors.value = response.error.data.symbol;
 					} else {
-						generalErrors.value = response.error.message;
+						errors.value = [response.error.message] as string[];
 					}
 				}
 			});
@@ -43,10 +42,12 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 
 <template>
 	<div class="new-game">
-		<h1>New Game</h1>
-		<p class="error">{{ generalErrors }}</p>
+		<h1 class="new-game__header">
+			<img src="/images/space-traders.svg" alt="Space Traders" height="32" width="32" />
+			<span>New Game</span>
+		</h1>
+		<p class="error" v-for="error in errors" :key="error">{{ error }}</p>
 		<TextInput v-model="agent" placeholder="agent name" pattern="[\-a-zA-Z0-9_]+" />
-		<p class="error" v-for="error in symbolErrors" :key="error">{{ error }}</p>
 		<SelectInput v-model="faction" :options="factionSymbolOptions" />
 		<div class="new-game__separator">
 			<hr />
@@ -54,7 +55,10 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 			<hr />
 		</div>
 		<TextInput v-model="importToken" placeholder="import" />
-		<ButtonInput @click="submit">Start</ButtonInput>
+		<ButtonInput class="start" @click="submit">
+			<font-awesome-icon icon="play" />
+			<span>Start</span>
+		</ButtonInput>
 	</div>
 </template>
 
@@ -64,6 +68,15 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 	flex-direction: column;
 	gap: 24px;
 	text-align: center;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		font-size: 1.75rem;
+		font-weight: 500;
+	}
 
 	&__separator {
 		display: flex;
@@ -80,5 +93,11 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 		font-size: 14px;
 		color: red;
 	}
+}
+.start {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
 }
 </style>
