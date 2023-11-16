@@ -18,10 +18,12 @@ library.add(fas)
 // Vue Router
 import Home from '@pages/Home.vue';
 import Travel from '@pages/Travel.vue';
+import Contracts from '@pages/Contracts.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
 	{ path: '/', component: Home },
 	{ path: '/travel', component: Travel },
+	{ path: '/contracts', component: Contracts },
 ];
 const router = createRouter({
 	history: createWebHashHistory(),

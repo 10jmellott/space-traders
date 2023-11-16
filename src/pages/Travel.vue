@@ -6,7 +6,6 @@ const systemsStore = useSystemsStore();
 
 <template>
 	<div class="travel">
-		<h1>Headquarters</h1>
 		<Waypoint :waypoint="systemsStore.headquarters" />
 	</div>
 </template>

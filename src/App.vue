@@ -4,21 +4,25 @@ import Navigation from '@components/Navigation.vue';
 
 import { useTokenStore } from '@stores/tokenStore';
 import { useAgentStore } from '@stores/agentStore';
-import { useSystemsStore } from './stores/systemsStore';
+import { useSystemsStore } from '@stores/systemsStore';
+import { useContractsStore } from '@stores/contractsStore';
 
 const agentStore = useAgentStore();
 const tokenStore = useTokenStore();
 const systemsStore = useSystemsStore();
+const contractsStore = useContractsStore();
 
 tokenStore.enableTokenCache();
 
 // Setup listeners
 tokenStore.$subscribe(agentStore.refreshAgent);
+tokenStore.$subscribe(contractsStore.refreshContracts);
 agentStore.$subscribe(systemsStore.refreshHeadquarters);
 
 // Setup initial state
 if (tokenStore.token) {
 	agentStore.refreshAgent();
+	contractsStore.refreshContracts();
 }
 </script>
 

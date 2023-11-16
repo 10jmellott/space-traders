@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { useAgentStore } from '@stores/agentStore';
+import { useContractsStore } from '@stores/contractsStore';
 import { computed } from 'vue';
 
 const agentStore = useAgentStore();
+const contractStore = useContractsStore();
 
 const routes = computed(() => {
 	return [
 		{ to: '/', label: 'Home', icon: 'home' },
 		{ to: '/travel', label: 'Travel', icon: 'location-dot' },
-		{ to: '/contracts', label: 'Contracts', icon: 'helmet-safety' },
-		{ to: '/ships', label: `Ships (${agentStore.agent?.shipCount || 0})`, icon: 'rocket' },
+		{ to: '/contracts', label: `Contracts(${contractStore.contracts.length})`, icon: 'helmet-safety' },
+		{ to: '/ships', label: `Ships(${agentStore.agent?.shipCount || 0})`, icon: 'rocket' },
 		{ to: '/faction', label: 'Faction', icon: 'users' },
 	]
 });
@@ -44,7 +46,6 @@ const routes = computed(() => {
 	gap: 32px;
 	text-align: center;
 	font-size: 1.5rem;
-	position: relative;
 
 	&__header {
 		display: flex;
@@ -81,10 +82,6 @@ const routes = computed(() => {
 
 		span {
 			flex-grow: 1;
-		}
-
-		svg {
-			position: absolute;
 		}
 	}
 }
