@@ -2,16 +2,23 @@
 import { useAgentStore } from '@stores/agentStore';
 
 const agentStore = useAgentStore();
+
+const routes = [
+	{ to: '/', label: 'Home', icon: 'home' },
+	{ to: '/travel', label: 'Travel', icon: 'location-dot' },
+	{ to: '/contracts', label: 'Contracts', icon: 'helmet-safety' },
+	{ to: '/ships', label: 'Ships', icon: 'rocket' },
+	{ to: '/faction', label: 'Faction', icon: 'users' },
+]
 </script>
 
 <template>
 	<div class="navigation">
 		<nav class="navigation__links" role="navigation">
-			<router-link to="/">Home</router-link>
-			<router-link to="/travel">Travel</router-link>
-			<router-link to="/contracts">Contracts</router-link>
-			<router-link to="/ships">Ships</router-link>
-			<router-link to="/faction">Faction</router-link>
+			<router-link v-for="route in routes" :to="route.to">
+				<font-awesome-icon :icon="route.icon" />
+				<span>{{ route.label }}</span>
+			</router-link>
 		</nav>
 		<p>{{ agentStore.agent?.symbol }}</p>
 		<p>Balance {{ agentStore.agent?.credits }}</p>
@@ -25,6 +32,7 @@ const agentStore = useAgentStore();
 	gap: 32px;
 	text-align: center;
 	font-size: 1.5rem;
+	position: relative;
 
 	&__links {
 		display: flex;
@@ -36,14 +44,26 @@ const agentStore = useAgentStore();
 		}
 
 		a {
+			display: flex;
+			align-items: center;
+			gap: 8px;
 			color: var(--foreground);
-			padding: 12px 0;
+			padding: 12px;
 			border-radius: 12px;
+			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
 			&:hover {
 				color: var(--highlight);
 				background-color: var(--background);
 			}
+		}
+
+		span {
+			flex-grow: 1;
+		}
+
+		svg {
+			position: absolute;
 		}
 	}
 }
