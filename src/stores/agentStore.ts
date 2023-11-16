@@ -9,8 +9,12 @@ export const useAgentStore = defineStore('agentStore', {
 	actions: {
 		refreshAgent() {
 			const tokenStore = useTokenStore();
-			const api = new AgentsApi(tokenStore.apiConfiguration);
-			api.getMyAgent().then(p => this.agent = p.data);
+			if (tokenStore.token) {
+				const api = new AgentsApi(tokenStore.apiConfiguration);
+				api.getMyAgent().then(p => this.agent = p.data);
+			} else {
+				this.agent = null;
+			}
 		}
 	}
 });

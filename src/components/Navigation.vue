@@ -1,27 +1,39 @@
 <script setup lang="ts">
 import { useAgentStore } from '@stores/agentStore';
+import { computed } from 'vue';
 
 const agentStore = useAgentStore();
 
-const routes = [
-	{ to: '/', label: 'Home', icon: 'home' },
-	{ to: '/travel', label: 'Travel', icon: 'location-dot' },
-	{ to: '/contracts', label: 'Contracts', icon: 'helmet-safety' },
-	{ to: '/ships', label: 'Ships', icon: 'rocket' },
-	{ to: '/faction', label: 'Faction', icon: 'users' },
-]
+const routes = computed(() => {
+	return [
+		{ to: '/', label: 'Home', icon: 'home' },
+		{ to: '/travel', label: 'Travel', icon: 'location-dot' },
+		{ to: '/contracts', label: 'Contracts', icon: 'helmet-safety' },
+		{ to: '/ships', label: `Ships (${agentStore.agent?.shipCount || 0})`, icon: 'rocket' },
+		{ to: '/faction', label: 'Faction', icon: 'users' },
+	]
+});
 </script>
 
 <template>
 	<div class="navigation">
+		<div class="navigation__header">
+			<img src="/images/space-traders.svg" alt="Space Traders" height="32" width="32" />
+			<span>Space Traders</span>
+		</div>
+		<p>{{ agentStore.agent?.symbol }}</p>
+
 		<nav class="navigation__links" role="navigation">
 			<router-link v-for="route in routes" :to="route.to">
 				<font-awesome-icon :icon="route.icon" />
 				<span>{{ route.label }}</span>
 			</router-link>
 		</nav>
-		<p>{{ agentStore.agent?.symbol }}</p>
-		<p>Balance {{ agentStore.agent?.credits }}</p>
+
+		<p>
+			<font-awesome-icon icon="coins" />
+			Balance {{ agentStore.agent?.credits }}
+		</p>
 	</div>
 </template>
 
@@ -33,6 +45,15 @@ const routes = [
 	text-align: center;
 	font-size: 1.5rem;
 	position: relative;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		font-size: 1.75rem;
+		font-weight: 500;
+	}
 
 	&__links {
 		display: flex;

@@ -17,9 +17,11 @@ library.add(fas)
 
 // Vue Router
 import Home from '@pages/Home.vue';
+import Travel from '@pages/Travel.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 const routes = [
-	{ path: '/', component: Home }
+	{ path: '/', component: Home },
+	{ path: '/travel', component: Travel },
 ];
 const router = createRouter({
 	history: createWebHashHistory(),
