@@ -46,15 +46,19 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 			<img src="/images/space-traders.svg" alt="Space Traders" height="32" width="32" />
 			<span>New Game</span>
 		</h1>
-		<p class="error" v-for="error in errors" :key="error">{{ error }}</p>
-		<TextInput v-model="agent" placeholder="agent name" pattern="[\-a-zA-Z0-9_]+" />
-		<SelectInput v-model="faction" :options="factionSymbolOptions" />
+
+		<TextInput v-model="importToken" placeholder="import" />
+
 		<div class="new-game__separator">
 			<hr />
 			<p>or</p>
 			<hr />
 		</div>
-		<TextInput v-model="importToken" placeholder="import" />
+
+		<p class="error" v-for="error in errors" :key="error">{{ error }}</p>
+		<TextInput v-model="agent" placeholder="agent name" pattern="[\-a-zA-Z0-9_]+" />
+		<SelectInput v-model="faction" :options="factionSymbolOptions" />
+
 		<ButtonInput class="start" @click="submit">
 			<font-awesome-icon icon="play" />
 			<span>Start</span>

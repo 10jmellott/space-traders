@@ -1,6 +1,7 @@
 import { ContractsApi, Contract } from '@api';
 import { defineStore } from 'pinia';
-import { useTokenStore } from './tokenStore';
+import useTokenStore from './tokenStore';
+import useAgentStore from './agentStore';
 
 export const useContractsStore = defineStore('contractsStore', {
 	state: () => ({
@@ -18,12 +19,21 @@ export const useContractsStore = defineStore('contractsStore', {
 		},
 		acceptContract(contract: Contract) {
 			const tokenStore = useTokenStore();
+			const agentStore = useAgentStore();
 			if (tokenStore.token) {
 				const api = new ContractsApi(tokenStore.apiConfiguration);
 				api.acceptContract({
 					contractId: contract.id
-				}).then(() => this.refreshContracts());
+				}).then(() => {
+					contract.accepted = true;
+					contract.deadlineToAccept = undefined;
+					if (agentStore.agent) {
+						agentStore.agent.credits += contract.terms.payment.onAccepted;
+					}
+				});
 			}
 		}
 	}
 });
+
+export default useContractsStore;

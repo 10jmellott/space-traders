@@ -23,5 +23,12 @@ export default defineConfig({
 	build: {
 		chunkSizeWarningLimit: 3000
 	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				additionalData: "@import '@styles/shared.scss';",
+			},
+		},
+	},
 	plugins: [vue()],
 })

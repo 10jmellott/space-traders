@@ -38,3 +38,5 @@ export const useTokenStore = defineStore('tokenStore', {
 		}
 	}
 });
+
+export default useTokenStore;

@@ -18,3 +18,5 @@ export const useAgentStore = defineStore('agentStore', {
 		}
 	}
 });
+
+export default useAgentStore;

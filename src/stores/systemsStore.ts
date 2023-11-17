@@ -28,3 +28,5 @@ export const useSystemsStore = defineStore('systemsStore', {
 		}
 	}
 });
+
+export default useSystemsStore;

@@ -11,7 +11,7 @@ const routes = computed(() => {
 		{ to: '/', label: 'Home', icon: 'home' },
 		{ to: '/travel', label: 'Travel', icon: 'location-dot' },
 		{ to: '/contracts', label: `Contracts(${contractStore.contracts.length})`, icon: 'helmet-safety' },
-		{ to: '/ships', label: `Ships(${agentStore.agent?.shipCount || 0})`, icon: 'rocket' },
+		{ to: '/fleet', label: `Fleet(${agentStore.agent?.shipCount || 0})`, icon: 'rocket' },
 		{ to: '/faction', label: 'Faction', icon: 'users' },
 	]
 });
@@ -19,15 +19,14 @@ const routes = computed(() => {
 
 <template>
 	<div class="navigation">
-		<div class="navigation__header">
+		<a href="https://spacetraders.io/" target="_blank" class="navigation__header">
 			<img src="/images/space-traders.svg" alt="Space Traders" height="32" width="32" />
 			<span>Space Traders</span>
-		</div>
-		<p>{{ agentStore.agent?.symbol }}</p>
+		</a>
 
 		<nav class="navigation__links" role="navigation">
 			<router-link v-for="route in routes" :to="route.to">
-				<font-awesome-icon :icon="route.icon" />
+				<font-awesome-icon class="icon" :icon="route.icon" />
 				<span>{{ route.label }}</span>
 			</router-link>
 		</nav>
@@ -43,7 +42,7 @@ const routes = computed(() => {
 .navigation {
 	display: flex;
 	flex-direction: column;
-	gap: 32px;
+	gap: 12px;
 	text-align: center;
 	font-size: 1.5rem;
 
@@ -61,10 +60,6 @@ const routes = computed(() => {
 		flex-direction: column;
 		margin: auto 0;
 
-		.router-link-active {
-			color: var(--highlight);
-		}
-
 		a {
 			display: flex;
 			align-items: center;
@@ -74,9 +69,19 @@ const routes = computed(() => {
 			border-radius: 12px;
 			transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
-			&:hover {
+			&.router-link-active {
 				color: var(--highlight);
-				background-color: var(--background);
+			}
+
+			@include desktop {
+				&:hover {
+					color: var(--highlight);
+					background-color: var(--background);
+				}
+			}
+
+			.icon {
+				position: absolute;
 			}
 		}
 

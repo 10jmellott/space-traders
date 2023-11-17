@@ -2,15 +2,17 @@
 import NewGame from '@components/NewGame.vue';
 import Navigation from '@components/Navigation.vue';
 
-import { useTokenStore } from '@stores/tokenStore';
-import { useAgentStore } from '@stores/agentStore';
-import { useSystemsStore } from '@stores/systemsStore';
-import { useContractsStore } from '@stores/contractsStore';
+import useTokenStore from '@stores/tokenStore';
+import useAgentStore from '@stores/agentStore';
+import useSystemsStore from '@stores/systemsStore';
+import useContractsStore from '@stores/contractsStore';
+import useFleetStore from '@stores/fleetStore';
 
 const agentStore = useAgentStore();
 const tokenStore = useTokenStore();
 const systemsStore = useSystemsStore();
 const contractsStore = useContractsStore();
+const fleetStore = useFleetStore();
 
 tokenStore.enableTokenCache();
 
@@ -18,11 +20,13 @@ tokenStore.enableTokenCache();
 tokenStore.$subscribe(agentStore.refreshAgent);
 tokenStore.$subscribe(contractsStore.refreshContracts);
 agentStore.$subscribe(systemsStore.refreshHeadquarters);
+agentStore.$subscribe(fleetStore.refreshFleet);
 
 // Setup initial state
 if (tokenStore.token) {
 	agentStore.refreshAgent();
 	contractsStore.refreshContracts();
+	fleetStore.refreshFleet();
 }
 </script>
 
@@ -36,35 +40,59 @@ if (tokenStore.token) {
 
 <style lang="scss" scoped>
 .new-game {
-	width: 360px;
+	width: 100%;
+	height: 100%;
 	background: var(--background-accent);
-	border-radius: 12px;
 	padding: 16px;
+
+	@include desktop {
+		width: 360px;
+		border-radius: 12px;
+	}
 }
 .root {
 	display: flex;
-	gap: 16px;
+	flex-direction: column;
+	gap: 2px;
 	width: 100%;
 	height: 100%;
 	justify-content: center;
 	align-items: center;
+
+	@include desktop {
+		flex-direction: row;
+		gap: 16px;
+	}
 }
 .navigation {
 	background: var(--background-accent);
-	border-radius: 12px;
+
 	padding: 16px;
-	width: 320px;
-	min-height: 480px;
+	width: 100%;
+
+	@include desktop {
+		width: 320px;
+		min-height: 480px;
+		max-width: 768px;
+		max-height: 100%;
+		flex-shrink: 0;
+		border-radius: 12px;
+	}
 }
 .main {
 	flex-grow: 1;
 	background: var(--background-accent);
-	border-radius: 12px;
+
 	padding: 24px;
 	overflow-y: auto;
 	overflow-x: hidden;
-	max-width: 768px;
-	max-height: 100%;
-	min-height: 480px;
+	width: 100%;
+
+	@include desktop {
+		min-height: 480px;
+		max-width: 768px;
+		max-height: 100%;
+		border-radius: 12px;
+	}
 }
 </style>

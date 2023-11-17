@@ -1,10 +1,10 @@
 /* CSS HSL */
 :root {
 	--foreground: hsla(46, 100%, 97%, 1);
-	--background: hsla(40, 4%, 14%, 1);
+	--background: hsla(34, 6%, 24%, 1);
 
 	--foreground-accent: hsla(38, 16%, 76%, 1);
-	--background-accent: hsla(34, 6%, 24%, 1);
+	--background-accent: hsla(40, 4%, 14%, 1);
 
 	--accent-light: hsla(56, 84%, 76%, 1);
 	--accent-dark: hsla(220, 58%, 34%, 1);
