@@ -14,8 +14,6 @@ const faction = ref(FactionSymbols.Cosmic);
 
 const importToken = ref('');
 
-const errors = ref([] as string[]);
-
 function submit() {
 	if (importToken.value) {
 		tokenStore.token = importToken.value;
@@ -25,9 +23,9 @@ function submit() {
 				const response = await e.response.json();
 				if (response?.error) {
 					if (response.error.data?.symbol) {
-						errors.value = response.error.data.symbol;
+						tokenStore.tokenErrors = response.error.data.symbol;
 					} else {
-						errors.value = [response.error.message] as string[];
+						tokenStore.tokenErrors = [response.error.message] as string[];
 					}
 				}
 			});
@@ -55,7 +53,7 @@ const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
 			<hr />
 		</div>
 
-		<p class="error" v-for="error in errors" :key="error">{{ error }}</p>
+		<p class="error" v-for="error in tokenStore.tokenErrors" :key="error">{{ error }}</p>
 		<TextInput v-model="agent" placeholder="agent name" pattern="[\-a-zA-Z0-9_]+" />
 		<SelectInput v-model="faction" :options="factionSymbolOptions" />
 

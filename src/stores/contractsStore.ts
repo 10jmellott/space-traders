@@ -30,7 +30,8 @@ export const useContractsStore = defineStore('contractsStore', {
 					if (agentStore.agent) {
 						agentStore.agent.credits += contract.terms.payment.onAccepted;
 					}
-				});
+				})
+				.catch(e => console.error(e));;
 			}
 		}
 	}

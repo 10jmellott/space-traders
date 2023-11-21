@@ -12,7 +12,8 @@ const api = new DefaultApi();
 export const useTokenStore = defineStore('tokenStore', {
 	state: () => ({
 		tokenCacheEnabled: false,
-		token: localStorage?.getItem(localStorageKey) ?? ''
+		token: localStorage?.getItem(localStorageKey) ?? '',
+		tokenErrors: [] as string[]
 	}),
 	getters: {
 		apiConfiguration(): Configuration {
