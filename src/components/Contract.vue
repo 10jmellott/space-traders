@@ -19,7 +19,7 @@ defineProps<{
 			<font-awesome-icon icon="coins" />
 			<span>Payout</span>
 		</h2>
-		<p>{{ contract.terms.payment.onAccepted }} credits on accepted</p>
+		<p :class="{ 'accepted': contract.accepted }">{{ contract.terms.payment.onAccepted }} credits on accepted</p>
 		<p>{{ contract.terms.payment.onFulfilled }} credits on fulfilled</p>
 		<h2>
 			<font-awesome-icon icon="truck" />
@@ -64,6 +64,11 @@ defineProps<{
 
 	&__accept-btn {
 		align-self: flex-end;
+	}
+
+	.accepted {
+		text-decoration: line-through;
+		opacity: 0.5;
 	}
 }
 </style>

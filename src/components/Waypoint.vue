@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ShipyardList from './ShipyardList.vue';
 import { Waypoint } from '@api';
 
 defineProps<{
@@ -15,6 +16,8 @@ defineProps<{
 		<div class="waypoint__traits">
 			<span v-for="trait in waypoint.traits">{{ trait.name }}</span>
 		</div>
+
+		<ShipyardList :waypoint="waypoint" />
 	</div>
 </template>
 
@@ -39,8 +42,9 @@ defineProps<{
 
 		span {
 			padding: 2px 8px;
-			border-radius: 8px;
+			border-radius: 4px;
 			background-color: var(--accent-dark);
+			font-size: 12px;
 		}
 	}
 }

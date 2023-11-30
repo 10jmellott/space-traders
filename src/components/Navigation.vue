@@ -1,17 +1,19 @@
 <script setup lang="ts">
+import useFleetStore from '@stores/fleetStore';
 import { useAgentStore } from '@stores/agentStore';
 import { useContractsStore } from '@stores/contractsStore';
 import { computed } from 'vue';
 
 const agentStore = useAgentStore();
 const contractStore = useContractsStore();
+const fleetStore = useFleetStore();
 
 const routes = computed(() => {
 	return [
 		{ to: '/', label: 'Home', icon: 'home' },
 		{ to: '/travel', label: 'Travel', icon: 'location-dot' },
 		{ to: '/contracts', label: `Contracts(${contractStore.contracts.length})`, icon: 'helmet-safety' },
-		{ to: '/fleet', label: `Fleet(${agentStore.agent?.shipCount || 0})`, icon: 'rocket' },
+		{ to: '/fleet', label: `Fleet(${fleetStore.fleet.length})`, icon: 'rocket' },
 		{ to: '/faction', label: 'Faction', icon: 'users' },
 	]
 });

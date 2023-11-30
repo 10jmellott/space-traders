@@ -22,6 +22,8 @@ import type {
   GetSystemWaypoints200Response,
   GetSystems200Response,
   GetWaypoint200Response,
+WaypointTrait,
+WaypointTraitSymbolEnum,
 } from '../models/index';
 import {
 	GetJumpGate200ResponseFromJSON,
@@ -63,6 +65,7 @@ export interface GetSystemWaypointsRequest {
 	systemSymbol: string;
 	page?: number;
 	limit?: number;
+	traits?: WaypointTraitSymbolEnum;
 }
 
 export interface GetSystemsRequest {
@@ -269,6 +272,10 @@ export class SystemsApi extends runtime.BaseAPI {
 
 		if (requestParameters.limit !== undefined) {
 			queryParameters['limit'] = requestParameters.limit;
+		}
+
+		if (requestParameters.traits !== undefined) {
+			queryParameters['traits'] = requestParameters.traits;
 		}
 
 		const headerParameters: runtime.HTTPHeaders = {};

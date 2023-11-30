@@ -28,15 +28,18 @@ function copyToken() {
 
 <template>
 	<div class="home">
-		<p>Agent Symbol {{ agentStore.agent?.symbol }}</p>
-		<p>Agent Credits {{ agentStore.agent?.credits }}</p>
-		<p>Account Id {{ agentStore.agent?.accountId }}</p>
-		<p>Headquarters {{ agentStore.agent?.headquarters }}</p>
-		<p>Ship Count {{ agentStore.agent?.shipCount }}</p>
+		<p class="home__agent">{{ agentStore.agent?.symbol }}</p>
 
-		<p>Token {{ tokenStore.token.slice(0, 12) }}...</p>
-		<ButtonInput @click="copyToken">Copy Token</ButtonInput>
-		<ButtonInput @click="clearToken">{{ confirmClearToken ? 'Confirm Clear' : 'Clear Token' }}</ButtonInput>
+		<p class="home__balance">
+			<font-awesome-icon icon="coins" />
+			<span>Balance {{ agentStore.agent?.credits }}</span>
+		</p>
+
+		<div class="home__tokens">
+			<ButtonInput @click="copyToken">Copy Token</ButtonInput>
+			<ButtonInput @click="clearToken">{{ confirmClearToken ? 'Confirm Clear' : 'Clear Token' }}</ButtonInput>
+			<span class="home__token">{{ tokenStore.token }}</span>
+		</div>
 	</div>
 </template>
 
@@ -44,8 +47,30 @@ function copyToken() {
 .home {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
 	gap: 16px;
+
+	&__agent {
+		font-size: 2rem;
+		font-weight: 500;
+	}
+
+	&__balance {
+		display: flex;
+		gap: 8px;
+	}
+
+	&__token {
+		max-width: 120px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__tokens {
+		display: flex;
+		gap: 8px;
+		margin-top: auto;
+		align-items: center;
+	}
 }
 </style>

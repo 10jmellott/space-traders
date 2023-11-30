@@ -41,7 +41,6 @@ if (tokenStore.token) {
 <style lang="scss" scoped>
 .new-game {
 	width: 100%;
-	height: 100%;
 	background: var(--background-accent);
 	padding: 16px;
 
