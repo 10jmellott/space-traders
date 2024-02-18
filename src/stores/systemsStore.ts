@@ -1,4 +1,5 @@
-import { SystemsApi, Waypoint, WaypointTraitSymbolEnum } from '@api';
+import { WaypointTraitSymbol } from '@api/models/WaypointTraitSymbol';
+import { SystemsApi, Waypoint } from '@api';
 import { defineStore } from 'pinia';
 import { useTokenStore } from './tokenStore';
 import { useAgentStore } from './agentStore';
@@ -33,7 +34,7 @@ export const useSystemsStore = defineStore('systemsStore', {
 				const api = new SystemsApi(tokenStore.apiConfiguration);
 				api.getSystemWaypoints({
 					systemSymbol: parseSystemSymbol(this.headquarters.symbol),
-					traits: WaypointTraitSymbolEnum.Shipyard
+					traits: WaypointTraitSymbol.Shipyard
 				}).then(p => {
 					this.shipyards = p.data;
 				});

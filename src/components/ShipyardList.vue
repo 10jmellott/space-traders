@@ -2,7 +2,8 @@
 import ButtonInput from './forms/ButtonInput.vue';
 import { parseSystemSymbol } from '@stores/systemsStore';
 import useTokenStore from '@stores/tokenStore';
-import { Waypoint, WaypointTraitSymbolEnum, Shipyard as SY, SystemsApi, ShipyardShip } from '@api';
+import { WaypointTraitSymbol } from '@api/models/WaypointTraitSymbol';
+import { Waypoint, Shipyard as SY, SystemsApi, ShipyardShip } from '@api';
 import useFleetStore from '@/stores/fleetStore';
 import { ref } from 'vue';
 
@@ -33,7 +34,7 @@ function purchaseShip(ship: ShipyardShip) {
 </script>
 
 <template>
-	<div class="shipyard" v-if="waypoint?.traits.some(t => t.symbol === WaypointTraitSymbolEnum.Shipyard)">
+	<div class="shipyard" v-if="waypoint?.traits.some(t => t.symbol === WaypointTraitSymbol.Shipyard)">
 		<ButtonInput class="shipyard__button" @click="getShipyard" v-show="!shipyard">
 			<font-awesome-icon icon="magnifying-glass" />
 			<span>Search Ships</span>

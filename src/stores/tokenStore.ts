@@ -1,4 +1,5 @@
-import { Configuration, DefaultApi, FactionSymbols } from '@api';
+import { Configuration, DefaultApi } from '@api';
+import { FactionSymbol } from '@api/models/FactionSymbol';
 import { defineStore } from 'pinia';
 
 const localStorageKey = 'space-traders-token';
@@ -29,7 +30,7 @@ export const useTokenStore = defineStore('tokenStore', {
 			cacheSettings(this.token);
 			this.$subscribe(() => cacheSettings(this.token));
 		},
-		registerNewToken(faction: FactionSymbols, symbol: string) {
+		registerNewToken(faction: FactionSymbol, symbol: string) {
 			return api.register({
 				registerRequest: {
 					faction: faction,

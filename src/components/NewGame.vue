@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { FactionSymbols, ResponseError } from '@api';
+import { FactionSymbol } from '@api/models/FactionSymbol';
+import { ResponseError } from '@api';
 import { ref } from 'vue';
 import { useTokenStore } from '@stores/tokenStore';
 
@@ -10,7 +11,7 @@ import ButtonInput from '@components/forms/ButtonInput.vue';
 const tokenStore = useTokenStore();
 
 const agent = ref('');
-const faction = ref(FactionSymbols.Cosmic);
+const faction = ref(FactionSymbol.Cosmic);
 
 const importToken = ref('');
 
@@ -32,7 +33,7 @@ function submit() {
 	}
 }
 
-const factionSymbolOptions = Object.values(FactionSymbols).map(faction => ({
+const factionSymbolOptions = Object.values(FactionSymbol).map(faction => ({
 	label: faction,
 	value: faction
 }));
