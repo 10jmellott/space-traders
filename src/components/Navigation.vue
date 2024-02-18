@@ -35,7 +35,7 @@ const routes = computed(() => {
 
 		<p>
 			<font-awesome-icon icon="coins" />
-			Balance {{ agentStore.agent?.credits }}
+			{{ agentStore.agent?.credits }}
 		</p>
 	</div>
 </template>
